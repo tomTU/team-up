@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="TeamUP Application" max_length="40" name="x_38339_teamup_teamup_application" type="collection">
+        <element display="true" label="App Name" max_length="40" name="app_name" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="App Owner" max_length="100" name="app_owner" type="string"/>
+        <element label="Article URL" max_length="1024" name="article_url" type="url"/>
+        <element attributes="edge_encryption_enabled=true" label="Description" max_length="1000" name="description" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Font Awesome Icon" max_length="40" name="font_awesome_icon" type="string"/>
+        <element label="Last Refreshed" max_length="40" name="last_refreshed" read_only="true" type="glide_date_time"/>
+        <element label="Page" max_length="40" name="page" type="string"/>
+        <element label="Scope" max_length="40" name="scope" type="string"/>
+        <element label="Version" max_length="40" name="version" type="string"/>
+    </element>
+</database>

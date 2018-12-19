@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition/>
+        <conditional>false</conditional>
+        <name>TeamUP - Check Application Status</name>
+        <run_as display_value="Mike Herron">3288100e4f422300dc5a417da310c7ba</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2018-12-18 13:35:00</run_start>
+        <run_time>1970-01-01 23:59:59</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[var appRefresh = new x_38339_teamup.TeamUpApplicationCheck().checkApplications();]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin_mh</sys_created_by>
+        <sys_created_on>2018-12-18 13:35:40</sys_created_on>
+        <sys_id>93c926404fae6300dc5a417da310c78e</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>TeamUP - Check Application Status</sys_name>
+        <sys_package display_value="TeamUP" source="x_38339_teamup">0582c9a14f122300dc5a417da310c7b6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="TeamUP">0582c9a14f122300dc5a417da310c7b6</sys_scope>
+        <sys_update_name>sysauto_script_93c926404fae6300dc5a417da310c78e</sys_update_name>
+        <sys_updated_by>admin_mh</sys_updated_by>
+        <sys_updated_on>2018-12-18 13:45:28</sys_updated_on>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

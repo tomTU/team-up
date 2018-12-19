@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rectangle_menu_item">
+    <sp_rectangle_menu_item action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <color>default</color>
+        <condition/>
+        <display_1/>
+        <display_2/>
+        <display_date/>
+        <filter/>
+        <glyph/>
+        <hint/>
+        <kb_article/>
+        <kb_category/>
+        <kb_topic/>
+        <label>Apps</label>
+        <order>100</order>
+        <record_script><![CDATA[data.omitBadge = true;
+
+var items = [];
+
+data.record_watchers = [];
+data.record_watchers.push( {'table': 'x_38339_teamup_teamup_application'} );
+
+var grApps = new GlideRecord( 'x_38339_teamup_teamup_application' );
+grApps.query();
+
+while ( grApps.next() ) {
+  var link = {};
+
+  // Check if apps are already installed
+  var grSysApp = new GlideAggregate( 'sys_app' );
+  grSysApp.addQuery( 'name', grApps.app_name.toString() );
+  grSysApp.addQuery( 'scope', grApps.scope.toString() );
+  grSysApp.query();
+
+  if ( grSysApp.hasNext() ) {
+    link.title = grApps.app_name.toString();
+    link.type = "link";
+    link.href = "?id=" + grApps.page.toString();
+  }
+
+  items.push( link );
+}
+
+if ( items.length == 0 ) {
+  items.push( {title: gs.getMessage('No Apps are installed'), type: 'link', href: '#', items: []} );
+}
+
+data.count = items.length;
+data.items = items;]]></record_script>
+        <sc_cat_item/>
+        <sc_category/>
+        <short_description/>
+        <sp_page/>
+        <sp_rectangle_menu display_value="TeamUP Header Menu">444031654fd22300dc5a417da310c716</sp_rectangle_menu>
+        <sp_rectangle_menu_item/>
+        <sys_class_name>sp_rectangle_menu_item</sys_class_name>
+        <sys_created_by>admin_tc</sys_created_by>
+        <sys_created_on>2018-12-10 15:46:04</sys_created_on>
+        <sys_id>38b9b52d4fd22300dc5a417da310c74b</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>Apps</sys_name>
+        <sys_package display_value="TeamUP" source="x_38339_teamup">0582c9a14f122300dc5a417da310c7b6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="TeamUP">0582c9a14f122300dc5a417da310c7b6</sys_scope>
+        <sys_update_name>sp_rectangle_menu_item_38b9b52d4fd22300dc5a417da310c74b</sys_update_name>
+        <sys_updated_by>admin_mh</sys_updated_by>
+        <sys_updated_on>2018-12-18 16:25:44</sys_updated_on>
+        <table/>
+        <type>scripted</type>
+        <url/>
+        <url_target/>
+    </sp_rectangle_menu_item>
+    <sys_translated_text action="delete_multiple" query="documentkey=38b9b52d4fd22300dc5a417da310c74b"/>
+</record_update>

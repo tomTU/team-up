@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>menuTemplate.html</id>
+        <sp_widget display_value="TeamUP Header Menu">abda5ee14f562300dc5a417da310c72d</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>admin_tc</sys_created_by>
+        <sys_created_on>2018-12-10 23:16:07</sys_created_on>
+        <sys_id>3c02a3254f1a2300dc5a417da310c7d7</sys_id>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>menuTemplate.html</sys_name>
+        <sys_package display_value="TeamUP" source="x_38339_teamup">0582c9a14f122300dc5a417da310c7b6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="TeamUP">0582c9a14f122300dc5a417da310c7b6</sys_scope>
+        <sys_update_name>sp_ng_template_3c02a3254f1a2300dc5a417da310c7d7</sys_update_name>
+        <sys_updated_by>admin_tc</sys_updated_by>
+        <sys_updated_on>2018-12-13 17:33:25</sys_updated_on>
+        <template><![CDATA[<a role="menuitem" ng-if="item.items.length == 0 && !item.scriptedItems" ng-href="{{::item.href}}" target="{{::item.url_target}}" title="{{::item.hint}}">
+  <fa ng-if="::item.glyph" name="{{::item.glyph}}"></fa>
+  <span ng-bind-html="::item.label"></span>
+</a>
+<a role="menuitem" aria-haspopup="true"  ng-if="item.items.length > 0" href class="dropdown-toggle sp-menu-has-items" data-toggle="dropdown" aria-controls="menu-apply" aria-haspopup="true" title="{{::item.hint}}">
+  <fa ng-if="::item.glyph" name="{{::item.glyph}}"></fa>
+  <span ng-bind-html="::item.label"></span> <span class="caret"></span>
+</a>
+<ul ng-if="item.items.length > 0" class="dropdown-menu" role="group" id="menu-apply">
+  <li ng-repeat="item in item.items" ng-include="'menuTemplate'" />
+</ul>
+<div uib-dropdown>
+  <div role="menuitem"
+     ng-if="item.scriptedItems.count > 0">
+    <fa ng-if="::item.glyph" name="{{::item.glyph}}"></fa>
+    <span ng-bind-html="::item.label"></span>
+    <span ng-if="::!item.scriptedItems.omitBadge" class="label label-as-badge label-primary sp-navbar-badge-count">{{item.scriptedItems.count}} </span>
+    <i class="fas fa-chevron-down"></i>
+    <ul role="menu" class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+        ng-if="item.scriptedItems.count > 0"
+        uib-dropdown-menu>
+      <li ng-repeat="mi in item.scriptedItems.items" style="min-width: 10em;" ng-include="'tuDropdownItems.html'">
+      </li>
+    </ul>
+  </div>
+</div>]]></template>
+    </sp_ng_template>
+</record_update>

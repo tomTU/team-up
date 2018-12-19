@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin_mh</sys_created_by>
+        <sys_created_on>2018-12-10 11:49:17</sys_created_on>
+        <sys_id>f4e40ded4f122300dc5a417da310c70a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_38339_teamup_teamup_application.x_38339_teamup.teamup_application_user</sys_name>
+        <sys_package display_value="TeamUP" source="x_38339_teamup">0582c9a14f122300dc5a417da310c7b6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="TeamUP">0582c9a14f122300dc5a417da310c7b6</sys_scope>
+        <sys_security_acl display_value="x_38339_teamup_teamup_application">f4e40ded4f122300dc5a417da310c707</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_f4e40ded4f122300dc5a417da310c70a</sys_update_name>
+        <sys_updated_by>admin_mh</sys_updated_by>
+        <sys_updated_on>2018-12-10 11:49:17</sys_updated_on>
+        <sys_user_role display_value="x_38339_teamup.teamup_application_user" name="x_38339_teamup.teamup_application_user">94e401294f122300dc5a417da310c7c6</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>

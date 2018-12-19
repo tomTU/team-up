@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>TeamUP Application Host</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_38339_teamup.tu.teamup.application_check_endpoint_host</name>
+        <read_roles/>
+        <suffix>tu.teamup.application_check_endpoint_host</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin_mh</sys_created_by>
+        <sys_created_on>2018-12-10 13:01:18</sys_created_on>
+        <sys_id>9f45d5654f522300dc5a417da310c754</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_38339_teamup.tu.teamup.application_check_endpoint_host</sys_name>
+        <sys_package display_value="TeamUP" source="x_38339_teamup">0582c9a14f122300dc5a417da310c7b6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="TeamUP">0582c9a14f122300dc5a417da310c7b6</sys_scope>
+        <sys_update_name>sys_properties_9f45d5654f522300dc5a417da310c754</sys_update_name>
+        <sys_updated_by>admin_mh</sys_updated_by>
+        <sys_updated_on>2018-12-10 13:01:18</sys_updated_on>
+        <type>string</type>
+        <value>dev50521.service-now.com</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=9f45d5654f522300dc5a417da310c754"/>
+</record_update>

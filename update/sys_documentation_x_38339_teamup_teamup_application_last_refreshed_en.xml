@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="last_refreshed" label="Last Refreshed" language="en" table="x_38339_teamup_teamup_application">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>last_refreshed</element>
+            <help/>
+            <hint/>
+            <label>Last Refreshed</label>
+            <language>en</language>
+            <name>x_38339_teamup_teamup_application</name>
+            <plural>Last Refreshed</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin_mh</sys_created_by>
+            <sys_created_on>2018-12-18 12:52:30</sys_created_on>
+            <sys_id>f410e2484f6e6300dc5a417da310c7ce</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Last Refreshed</sys_name>
+            <sys_package display_value="TeamUP" source="x_38339_teamup">0582c9a14f122300dc5a417da310c7b6</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="TeamUP">0582c9a14f122300dc5a417da310c7b6</sys_scope>
+            <sys_update_name>sys_documentation_x_38339_teamup_teamup_application_last_refreshed_en</sys_update_name>
+            <sys_updated_by>admin_mh</sys_updated_by>
+            <sys_updated_on>2018-12-18 12:52:30</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

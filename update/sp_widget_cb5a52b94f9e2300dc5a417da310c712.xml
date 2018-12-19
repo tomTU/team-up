@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($document, $scope, spUtil) {
+	/* widget controller */
+	var c = this;
+	
+	spUtil.recordWatch($scope, "x_38339_teamup_teamup_application");
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.tu-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.tu-header{
+  background-color: rgba(256,256,256,0.7);
+
+  h3 {
+    padding: 5px;
+
+    .fas {
+      font-size: 30px;
+    }
+  }
+}
+
+.attrib {
+ font-weight:bold; 
+}
+
+.description {
+  padding: 40px;
+}
+
+.fa-check {
+  color: green;
+  font-size: 25px;
+}
+
+.fa-times {
+  color: red;
+  font-size: 25px;
+}
+
+
+/* Flippy cards */
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  // background-image: -webkit-linear-gradient(30deg, #34ADFF 45%, #4CBFFF 45%);
+  background-color: white;
+  box-shadow: 0 0 10px 1px #faf2d4;
+}
+
+.flip-card-front {
+  // background-color: #fff;
+  color: black;
+  z-index: 2;
+}
+
+.flip-card-back {
+  // background-color: hotPink;
+  color: black;
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+.content-body {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.flip-card-footer {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  padding: 10px 0;
+
+  a {
+    padding: 10px 5px;
+    font-weight:bold;
+  }
+}
+/* End of Flippy cards */
+
+
+/* Glow effects */
+.tu-newinstall-glow {
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: inset 0 0 10px -10px #77dd77;
+  }
+  to {
+    box-shadow: inset 0 0 30px 10px #39ff14;
+  }
+}
+
+.tu-upgrade-glow {
+  animation: upgrade-glow 2s infinite alternate;
+}
+
+@keyframes upgrade-glow {
+  from {
+    box-shadow: inset 0 0 10px -10px #FFB347;
+  }
+  to {
+    box-shadow: inset 0 0 30px 10px #FF9933;
+  }
+}
+/* End of Glow effects */</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>teamup-available-app-list</id>
+        <internal>false</internal>
+        <link/>
+        <name>TeamUP Available App List</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+
+	data.apps = [];
+	data.instanceName = gs.getProperty( 'instance_name' );
+	data.teamUp = 'https://' + data.instanceName + '.service-now.com/teamup?id=';
+
+	//Get all TeamUp Apps
+	var grApps = new GlideRecord( 'x_38339_teamup_teamup_application' );
+	grApps.query();
+	while ( grApps.next() ) {
+
+		var obj = {};
+		$sp.getRecordDisplayValues(obj, grApps, 'app_name, version, font_awesome_icon, scope, article_url, description, app_owner');
+		//Determine if an upgrade is available for installed apps
+		var upgradeAvail = false;
+		var newInstall = false;
+		var appURL = '';
+		var buttonMsg = gs.getMessage( 'App Installed' );
+		var grSysApp = new GlideRecord( 'sys_app' );
+		grSysApp.addQuery( 'name', grApps.app_name.toString() );
+		grSysApp.addQuery( 'scope', grApps.scope.toString() );
+		grSysApp.query();
+		
+		if ( !grSysApp.hasNext() ) {
+			buttonMsg = gs.getMessage( 'Click here to install App' );
+			newInstall = true;
+			appURL = grApps.article_url.toString();
+		}
+		
+		while ( grSysApp.next() ) {
+			if ( grSysApp.version < grApps.version ) {
+				buttonMsg = gs.getMessage( 'App update available' );
+				upgradeAvail = true;
+				appURL = grApps.article_url.toString();
+			} else {
+				//App is installed, and it's up to date
+				appURL = data.teamUp + grApps.page.toString();
+			}
+		}
+
+		obj.buttonMsg = buttonMsg;
+		obj.upgradeAvail = upgradeAvail;
+		obj.newInstall = newInstall;
+		obj.appURL = appURL;
+
+		data.apps.push( obj );
+
+	}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin_mh</sys_created_by>
+        <sys_created_on>2018-12-11 12:41:12</sys_created_on>
+        <sys_id>cb5a52b94f9e2300dc5a417da310c712</sys_id>
+        <sys_mod_count>167</sys_mod_count>
+        <sys_name>TeamUP Available App List</sys_name>
+        <sys_package display_value="TeamUP" source="x_38339_teamup">0582c9a14f122300dc5a417da310c7b6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="TeamUP">0582c9a14f122300dc5a417da310c7b6</sys_scope>
+        <sys_update_name>sp_widget_cb5a52b94f9e2300dc5a417da310c712</sys_update_name>
+        <sys_updated_by>admin_mh</sys_updated_by>
+        <sys_updated_on>2018-12-18 16:15:49</sys_updated_on>
+        <template><![CDATA[<div class="tu-container">
+  <div class="flip-card m-b" ng-repeat="apps in data.apps">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <div class="tu-header">
+          <h3><i class="fas" ng-class="apps.font_awesome_icon"></i><br/>{{::apps.app_name}}</h3>
+        </div>
+        <div class="install-status">
+          <h4>${Installed}: <i class="fas" ng-class="{'fa-times': apps.newInstall, 'fa-check': !apps.newInstall}"></i></h4>
+        </div>
+        <div class="content-body">
+          <p class="description">{{::apps.description}}</p>
+        </div>
+      </div>
+      <div class="flip-card-back">
+        <h2>${Info}</h2>
+        <div class="info-stuff">
+          <span>
+          <p class="attrib">${Version}:</p><p> {{::apps.version}}</p>
+          <p class="attrib">${Scope}:</p><p> {{::apps.scope}}</p>
+          <p class="attrib">${App Owner(s)}:<p> {{::apps.app_owner}}</p>
+          </span>
+        </div>
+        <div class="flip-card-footer"
+             ng-class="{ 'tu-newinstall-glow': apps.newInstall, 'tu-upgrade-glow': apps.upgradeAvail }">
+          <a href={{::apps.appURL}} role="button">{{::apps.buttonMsg}}</a>
+        </div>
+      </div>
+    </div>
+  </div>]]></template>
+    </sp_widget>
+</record_update>

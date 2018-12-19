@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <css>main.page, main.body {
+   height: 99vh;
+   min-height: 100%;
+   padding-top: 0px !important;
+}
+
+section.page {
+   background-image: url('/teamUPbackground.jpg');
+   background-position: center center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-color: #3A3F50;
+   animation: fadein 2s;
+}
+
+section.page main.body:before {
+   display: block;
+   background-color: #3A3F50;
+   opacity: 0.75;
+}
+
+@keyframes fadein {
+from {
+opacity:0;
+}
+to {
+opacity:1;
+}
+}
+@-moz-keyframes fadein { /* Firefox */
+from {
+opacity:0;
+}
+to {
+opacity:1;
+}
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+from {
+opacity:0;
+}
+to {
+opacity:1;
+}
+}</css>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <id>teamup_index</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles/>
+        <short_description/>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>admin_mh</sys_created_by>
+        <sys_created_on>2018-12-10 13:14:41</sys_created_on>
+        <sys_id>b76899ed4f522300dc5a417da310c74c</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>teamup_index</sys_name>
+        <sys_package display_value="TeamUP" source="x_38339_teamup">0582c9a14f122300dc5a417da310c7b6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="TeamUP">0582c9a14f122300dc5a417da310c7b6</sys_scope>
+        <sys_update_name>sp_page_b76899ed4f522300dc5a417da310c74c</sys_update_name>
+        <sys_updated_by>admin_mh</sys_updated_by>
+        <sys_updated_on>2018-12-12 14:06:24</sys_updated_on>
+        <title>TeamUP</title>
+    </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=b76899ed4f522300dc5a417da310c74c"/>
+</record_update>

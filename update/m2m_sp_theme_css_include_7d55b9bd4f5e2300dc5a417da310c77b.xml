@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_theme_css_include">
+    <m2m_sp_theme_css_include action="INSERT_OR_UPDATE">
+        <order>100</order>
+        <sp_css_include display_value="Font Awesome - most recent">e764b9bd4f5e2300dc5a417da310c748</sp_css_include>
+        <sp_theme display_value="TeamUP Theme">837d69614fd22300dc5a417da310c717</sp_theme>
+        <sys_class_name>m2m_sp_theme_css_include</sys_class_name>
+        <sys_created_by>admin_tc</sys_created_by>
+        <sys_created_on>2018-12-11 09:59:28</sys_created_on>
+        <sys_id>7d55b9bd4f5e2300dc5a417da310c77b</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Font Awesome - most recent.TeamUP Theme</sys_name>
+        <sys_package display_value="TeamUP" source="x_38339_teamup">0582c9a14f122300dc5a417da310c7b6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="TeamUP">0582c9a14f122300dc5a417da310c7b6</sys_scope>
+        <sys_update_name>m2m_sp_theme_css_include_7d55b9bd4f5e2300dc5a417da310c77b</sys_update_name>
+        <sys_updated_by>admin_tc</sys_updated_by>
+        <sys_updated_on>2018-12-11 10:01:32</sys_updated_on>
+    </m2m_sp_theme_css_include>
+</record_update>

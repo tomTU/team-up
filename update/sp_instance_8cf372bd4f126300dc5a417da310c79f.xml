@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">83e3babd4f126300dc5a417da310c7eb</sp_column>
+        <sp_widget display_value="TeamUP Available App List">cb5a52b94f9e2300dc5a417da310c712</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin_mh</sys_created_by>
+        <sys_created_on>2018-12-11 14:32:58</sys_created_on>
+        <sys_id>8cf372bd4f126300dc5a417da310c79f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="TeamUP" source="x_38339_teamup">0582c9a14f122300dc5a417da310c7b6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="TeamUP">0582c9a14f122300dc5a417da310c7b6</sys_scope>
+        <sys_update_name>sp_instance_8cf372bd4f126300dc5a417da310c79f</sys_update_name>
+        <sys_updated_by>admin_mh</sys_updated_by>
+        <sys_updated_on>2018-12-11 14:32:58</sys_updated_on>
+        <title/>
+        <u_image/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=8cf372bd4f126300dc5a417da310c79f"/>
+</record_update>

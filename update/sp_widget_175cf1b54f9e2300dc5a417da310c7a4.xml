@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function( $scope, spUtil ) {  /* widget controller */
+
+	var c = this;
+	$scope.appRefreshing = false;
+
+	$scope.refreshApps = function() {
+		$scope.appRefreshing = true;
+		c.server.get({
+			'action': 'refresh'
+		}).then(function( response ) {
+			$scope.appRefreshing = false;
+			console.log( "App refreshed - spinner should hide" );
+		});
+	}
+	
+	spUtil.recordWatch($scope, "x_38339_teamup_teamup_application");
+	
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.ttd-intro-text {
+  color: #fff;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: relative;
+  width:auto;
+  padding: 15px 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-size: 18px
+}
+
+.ttd-title{
+  margin: 0 auto 15px;
+  padding: 0;
+  font-weight: bold;
+}
+
+.ttd-desc{
+  padding: 0;
+}
+
+.ttd-desc p:last-child{
+  margin-bottom: 0;
+}
+
+div &gt; span &gt; p i {
+  display: block;
+}
+
+a {
+  color: #fff;
+  margin-right: 10px;
+
+  &amp;:hover {
+    color: #C0C0C0
+  }
+}
+
+.team-member {
+  margin-right: 5px;
+}
+label {
+  &amp;:hover {
+    transform: scale(1.2); 
+  }
+}
+
+.last-refresh {
+  font-size: 12px;
+  margin-top:10px;
+}
+
+.spinner {
+  height: 50px;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>teamup-intro-text</id>
+        <internal>false</internal>
+        <link/>
+        <name>TeamUP Intro Text</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	
+	//Get last app refresh date
+	data.appRefreshDate = getAppRefreshDate();
+	
+	if ( input && input.action == 'refresh' ) {
+		
+		var appCheck = new x_38339_teamup.TeamUpApplicationCheck().checkApplications();
+		data.appRefreshDate = getAppRefreshDate();
+		
+	}
+	
+	function getAppRefreshDate() {
+		
+		var grRec = new GlideRecord( 'x_38339_teamup_teamup_application' );
+		grRec.setLimit(1);
+		grRec.orderBy( 'last_refreshed' );
+		grRec.query();
+		while( grRec.next() ) {
+			return grRec.last_refreshed.getDisplayValue();
+		}
+		
+		return false;
+	
+	}
+	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin_mh</sys_created_by>
+        <sys_created_on>2018-12-11 10:30:09</sys_created_on>
+        <sys_id>175cf1b54f9e2300dc5a417da310c7a4</sys_id>
+        <sys_mod_count>68</sys_mod_count>
+        <sys_name>TeamUP Intro Text</sys_name>
+        <sys_package display_value="TeamUP" source="x_38339_teamup">0582c9a14f122300dc5a417da310c7b6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="TeamUP">0582c9a14f122300dc5a417da310c7b6</sys_scope>
+        <sys_update_name>sp_widget_175cf1b54f9e2300dc5a417da310c7a4</sys_update_name>
+        <sys_updated_by>admin_mh</sys_updated_by>
+        <sys_updated_on>2018-12-18 13:42:12</sys_updated_on>
+        <template><![CDATA[<div class="ttd-intro-text">
+  <h1 class="ttd-title">Team Utility Portal</h1>
+  <div class="ttd-desc">
+    <p>Welcome to TeamUP!</p>
+    <p>TeamUP is a TeamUltra portal that hosts a number of custom apps our consultants have built that accelerate our ways of working.</p>
+    <p>If you have any suggestions on how to improve this portal, or if you have an app idea please email one of the team: </p>
+    <span class="team-member">
+      <label for="team-member-1">
+        <i class="far fa-envelope-open"></i>
+        <a id="team-member-2" href="mailto:michael.herron@teamultra.net?Subject=TeamUp" target="_top">Michael Herron</a>
+      </label>
+    </span>
+    <span class="team-member">
+      <label for="team-member-2">
+        <i class="far fa-envelope-open"></i>
+        <a id="team-member-2" href="mailto:tom.cumins@teamultra.net?Subject=TeamUp" target="_top">Tom Cumins</a>
+      </label>
+    </span>
+  </div>
+  <button class="btn btn-default" ng-click="refreshApps()" ng-disabled="refreshOccuring">
+    <i class="fas fa-sync-alt"></i> 
+    Refresh Apps</button>
+  <div ng-show="c.data.appRefreshDate">
+    <div class="last-refresh">${Last App Refresh: }</div>
+    <img  class="spinner" ng-show="appRefreshing" src="/pulse.svg"> 
+    <span ng-show="!appRefreshing" class="last-refresh">{{c.data.appRefreshDate}}</span>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

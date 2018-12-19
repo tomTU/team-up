@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_38339_teamup.TeamUpApplicationCheck</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Checks available applications that can be used through TeamUP</description>
+        <name>TeamUpApplicationCheck</name>
+        <script><![CDATA[var TeamUpApplicationCheck = Class.create();
+TeamUpApplicationCheck.prototype = {
+	initialize: function() {
+
+		this.SOURCE = 'TU-Application_Check-TeamUP';
+		this.ENDPOINT_HOST = gs.getProperty( 'x_38339_teamup.tu.teamup.application_check_endpoint_host' );
+		this.TEAMUP_APP_TABLE = 'x_38339_teamup_teamup_application';
+		this.TEAMUP_APP_NAME_PROP = 'app_name';
+		this.TEAMUP_APP_SCOPE_PROP = 'scope';
+		this.TEAMUP_UPDATE = 'Update';
+		this.TEAMUP_CREATE = 'Create';
+
+	},
+
+
+	/*_________________________________________________________________
+   * Description: Retrieves a list of applications that are available through TeamUP
+   * Returns: Void
+   ________________________________________________________________*/
+	checkApplications: function() {
+
+		//Table API call to retrive applications
+		var request = new sn_ws.RESTMessageV2();
+		request.setEndpoint( 'https://' + this.ENDPOINT_HOST + '/api/now/table/' + this.TEAMUP_APP_TABLE );
+		request.setHttpMethod('GET');
+		request.setRequestHeader("Accept","application/json");
+		var response = request.execute();
+		gs.info( gs.getMessage( 'Applications pulled down: \n{0}, \n\nHanding off to processor...', [ response.getBody() ] ) );
+
+		this.processApplications( response );
+
+	},
+
+	/*_________________________________________________________________
+   * Description: Processes application records
+   * Parameters: apiResponse - [ object ] - The table API response object
+   * Returns: Void
+   ________________________________________________________________*/
+	processApplications: function( apiResponse ) {
+
+		var respBody = JSON.parse ( apiResponse.getBody() );
+		var respResult = respBody.result;
+
+		//Loop over our array and create TeamUP application records if they don't exist
+		for ( var i = 0; i < respResult.length; i++ ) {
+			if ( this.applicationExistenceChecker( respResult[ i ][ this.TEAMUP_APP_NAME_PROP ], respResult[ i ][ this.TEAMUP_APP_SCOPE_PROP ] ) ) {
+				this.setupApplication( respResult[ i ], this.TEAMUP_UPDATE );
+			} else {
+				this.setupApplication( respResult[ i ], this.TEAMUP_CREATE );
+			}
+		}
+
+	},
+
+	/*_________________________________________________________________
+   * Description: Checks if a TeamUP application record already exists or not
+   * Parameters: appName - [ string ] - The application name
+                 appScope - [ string ] - The application scope
+   * Returns: grApp.hasNext() - [ boolean ] - Whether the app exists or not
+   ________________________________________________________________*/
+	applicationExistenceChecker: function( appName, appScope ) {
+
+		var grApp = new GlideRecord( this.TEAMUP_APP_TABLE );
+		grApp.addEncodedQuery( 'app_name=' + appName  +'^scope=' + appScope );
+		grApp.query();
+
+		return grApp.hasNext();
+
+	},
+
+	/*_________________________________________________________________
+   * Description: Creates/Updates a TeamUP application record
+   * Parameters: appObj - [ object ] - The application object record from the API response body
+                 action - [ string ] - The action we need to take for the record
+   * Returns: Void
+   ________________________________________________________________*/
+	setupApplication: function( appObj, action ) {
+
+		gs.info( gs.getMessage( 'Application setup called with action: {0}, object: {1} ', [ action, JSON.stringify( appObj ) ] ) );
+
+		var grApp = new GlideRecord( this.TEAMUP_APP_TABLE );
+		if ( action == 'Create' ) {
+			grApp.initialize(); 
+			for( var newField in appObj ) {
+				grApp[ newField ] = appObj[ newField ];
+			}
+			grApp.last_refreshed = new GlideDateTime().getDisplayValue();
+			grApp.insert();
+		} else {
+			grApp.query( this.TEAMUP_APP_NAME_PROP, appObj[ this.TEAMUP_APP_NAME_PROP ] );
+			grApp.query( this.TEAMUP_APP_SCOPE_PROP, appObj[ this.TEAMUP_APP_SCOPE_PROP ] );
+			grApp.query();
+			while( grApp.next() ) {
+				for( var updateField in appObj ) {
+					grApp[ updateField ] = appObj[ updateField ];
+				}
+				grApp.last_refreshed = new GlideDateTime().getDisplayValue();
+				grApp.update();
+			}
+		}
+
+	},
+
+	type: 'TeamUpApplicationCheck'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin_mh</sys_created_by>
+        <sys_created_on>2018-12-10 12:53:27</sys_created_on>
+        <sys_id>ef364d614f522300dc5a417da310c72d</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>TeamUpApplicationCheck</sys_name>
+        <sys_package display_value="TeamUP" source="x_38339_teamup">0582c9a14f122300dc5a417da310c7b6</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="TeamUP">0582c9a14f122300dc5a417da310c7b6</sys_scope>
+        <sys_update_name>sys_script_include_ef364d614f522300dc5a417da310c72d</sys_update_name>
+        <sys_updated_by>admin_mh</sys_updated_by>
+        <sys_updated_on>2018-12-18 12:54:04</sys_updated_on>
+    </sys_script_include>
+</record_update>
