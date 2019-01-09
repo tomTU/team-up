@@ -3,7 +3,6 @@
         <access>public</access>
         <active>true</active>
         <api_name>x_38339_teamup.TeamUpApplicationCheck</api_name>
-        <caller_access/>
         <client_callable>false</client_callable>
         <description>Checks available applications that can be used through TeamUP</description>
         <name>TeamUpApplicationCheck</name>
