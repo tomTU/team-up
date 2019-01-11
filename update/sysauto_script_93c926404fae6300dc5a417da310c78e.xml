@@ -4,7 +4,7 @@
         <condition/>
         <conditional>false</conditional>
         <name>TeamUP - Check Application Status</name>
-        <run_as display_value="Mike Herron">fe2dfeb0db3223009462a0f2ca9619a2</run_as>
+        <run_as display_value="">fe2dfeb0db3223009462a0f2ca9619a2</run_as>
         <run_as_tz/>
         <run_dayofmonth>1</run_dayofmonth>
         <run_dayofweek>1</run_dayofweek>
